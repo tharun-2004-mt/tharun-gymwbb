@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 app.use(express.static('.')); // Serve frontend files
 
 // Routes
-app.use('/api/auth', require('./routes/auth'));
+app.use('/api/auth', require('./routes/auth-fixed'));
 app.use('/api/contact', require('./routes/contact'));
 
 // Admin API - GET all data
@@ -60,18 +60,23 @@ app.delete('/api/users/:id', async (req, res) => {
   }
 });
 
-
 // MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/tharungym', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/tharungym')
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.log('MongoDB connection error:', err.message));
 
 // Basic route
 app.get('/', (req, res) => {
-  res.sendFile('INDEX.HTML', { root: __dirname });
+  res.sendFile(__dirname + '/INDEX.HTML');
 });
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
+});
+
+server.on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    console.log('Port 5000 in use. Kill it: taskkill /F /PID $(netstat -ano | findstr :5000 | awk "{ print $5 }")');
+  }
 });
 
