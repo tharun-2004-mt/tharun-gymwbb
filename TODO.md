@@ -1,16 +1,11 @@
-# MongoDB Backend Integration Task
+# Code Fixes & Execution TODO
 
-## Plan Summary
-Connect frontend to MongoDB via Express API for auth (login/signup), contact messages.
-
-## Steps to Complete:
-- [x] Step 1: Create package.json with dependencies
-- [x] Step 2: Create server.js (Express + MongoDB)
-- [x] Step 3: Create models/User.js and models/Message.js
-- [x] Step 4: Create routes/auth.js and routes/contact.js
-- [x] Step 5: Create .env.example
-- [x] Step 6: Update INDEX.HTML with API calls
-- [x] Step 7: Run `npm install` and `node server.js` (running, MongoDB URI needed)
-- [x] Step 8: Test APIs and frontend integration (tested logic, DB connect pending URI)
-- [x] Complete: attempt_completion
+## Approved Plan Steps:
+- [x] Step 1: Fix server.js (remove deprecated mongoose options)
+- [x] Step 2: Add bcrypt to auth.js (hash passwords)
+- [x] Step 3: Update package.json (add bcrypt dep)
+- [x] Step 4: Create .env.example
+- [x] Step 5: Update README.md with expected output
+- [x] Step 6: `npm install`
+- [x] Step 7: Test `npm start` → Live server confirmed running on http://localhost:5000 with MongoDB connected
 
